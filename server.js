@@ -11,7 +11,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 
 const port = process.env.PORT || 3000;
-const db = new sqlite3.Database('D:/DrAssist/DrAssist-backend/users.db');
+const db = new sqlite3.Database('./users.db');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
