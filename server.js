@@ -1,25 +1,30 @@
-    require('openai/shims/node');
+require('openai/shims/node');
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const { OpenAI } = require('openai');
+const bcrypt = require('bcrypt'); // I've retained this although it's unused in the provided code. You might need it for enhanced security later.
+const morgan = require('morgan');
 
-    const express = require('express');
-    const sqlite3 = require('sqlite3').verbose();
-    const bodyParser = require('body-parser');
-    const cors = require('cors');
-    const { OpenAI } = require('openai');
+const app = express();
+require('dotenv').config();
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-    const app = express();
-    require('dotenv').config();
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const port = process.env.PORT || 3000;
+const db = new sqlite3.Database('./users.db');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+    const corsOptions = {
+        origin: 'https://dr-assist-frontend-ue2e.vercel.app/', // updated with your frontend's URL
+        optionsSuccessStatus: 200
+      };
+      app.use(cors(corsOptions));
 
+    // Adding morgan for logging
+    app.use(morgan('combined'));
 
-    const port = process.env.PORT || 3000;
-    const db = new sqlite3.Database('./users.db');
-
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
-    app.use(cors());
-
-    // Chat functionality using OpenAI SDK
     // Chat functionality using OpenAI SDK
     app.post('/api/chat', async (req, res) => {
         const { prompt } = req.body;
