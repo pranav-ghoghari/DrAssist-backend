@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
     const corsOptions = {
         origin: 'https://dr-assist-frontend-ue2e.vercel.app/', // updated with your frontend's URL
-        optionsSuccessStatus: 200
+        optionsSuccessStatus: 200,
+        credentials: true
       };
       app.use(cors(corsOptions));
 
