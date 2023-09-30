@@ -17,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const allowedOrigins = [
     'https://dr-assist-frontend-ue2e.vercel.app',
-    'https://dr-assist-frontend-ue2e-lhpw7ezbr-pranavs-projects-42fdf9ea.vercel.app'
+    'https://dr-assist-frontend-ue2e-lhpw7ezbr-pranavs-projects-42fdf9ea.vercel.app',
+    'http://localhost:4200'
 ];
 
 const corsOptions = {
