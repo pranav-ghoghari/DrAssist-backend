@@ -4,8 +4,7 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { OpenAI } = require('openai');
-const bcrypt = require('bcrypt'); // I've retained this although it's unused in the provided code. You might need it for enhanced security later.
-const morgan = require('morgan');
+
 
 const app = express();
 require('dotenv').config();
@@ -35,8 +34,6 @@ const corsOptions = {
 
       app.use(cors(corsOptions));
 
-    // Adding morgan for logging
-    app.use(morgan('combined'));
 
     // Chat functionality using OpenAI SDK
     app.post('/api/chat', async (req, res) => {
