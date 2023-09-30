@@ -16,11 +16,23 @@ const db = new sqlite3.Database('./users.db');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+const allowedOrigins = [
+    'https://dr-assist-frontend-ue2e.vercel.app',
+    'https://dr-assist-frontend-ue2e-lhpw7ezbr-pranavs-projects-42fdf9ea.vercel.app'
+];
+
 const corsOptions = {
-    origin: '*', 
+    origin: function (origin, callback) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     optionsSuccessStatus: 200,
     credentials: true
 };
+
       app.use(cors(corsOptions));
 
     // Adding morgan for logging
