@@ -16,11 +16,11 @@ const db = new sqlite3.Database('./users.db');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-    const corsOptions = {
-        origin: 'https://dr-assist-frontend-ue2e.vercel.app/', // updated with your frontend's URL
-        optionsSuccessStatus: 200,
-        credentials: true
-      };
+const corsOptions = {
+    origin: '*', 
+    optionsSuccessStatus: 200,
+    credentials: true
+};
       app.use(cors(corsOptions));
 
     // Adding morgan for logging
