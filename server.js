@@ -12,10 +12,18 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const port = process.env.PORT || 3000;
 const db = new sqlite3.Database('./users.db');
-
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'https://dr-assist-frontend-ue2e.vercel.app/login'); // replace 'YOUR_FRONTEND_ORIGIN' with the appropriate frontend origin
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
+  
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const allowedOrigins = [
+    'https://dr-assist-frontend-ue2e.vercel.app/login',
     'https://dr-assist-frontend-ue2e-pranavs-projects-42fdf9ea.vercel.app',
     'https://dr-assist-frontend-ue2e-git-master-pranavs-projects-42fdf9ea.vercel.app',
     'https://dr-assist-frontend-ue2e-ma4s2cbl7-pranavs-projects-42fdf9ea.vercel.app',
