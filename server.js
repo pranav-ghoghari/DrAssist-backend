@@ -17,10 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const allowedOrigins = [
-    'https://dr-assist-frontend-ue2e.vercel.app/login',
+    'https://dr-assist-frontend-ue2e.vercel.app',
     'https://dr-assist-frontend-ue2e-pranavs-projects-42fdf9ea.vercel.app',
-    'https://dr-assist-frontend-ue2e-git-master-pranavs-projects-42fdf9ea.vercel.app',
-    'https://dr-assist-frontend-ue2e-ma4s2cbl7-pranavs-projects-42fdf9ea.vercel.app',
+    'https://dr-assist-frontend-ue2e-6ihgboqbu-pranavs-projects-42fdf9ea.vercel.app',
     'http://localhost:4200'
 ];
 
